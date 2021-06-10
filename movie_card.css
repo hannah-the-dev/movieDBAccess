@@ -1,0 +1,51 @@
+.page {
+    background-color: steelblue;
+    position: absolute;
+    width: 100%;
+    height: auto
+  }
+  
+  .film {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    align-items: stretch;
+    flex: auto;
+    justify-content: space-evenly;
+  }
+
+  figure {
+    width: 300px;
+    padding: 0 0 0 0;
+    margin: 2% 2% 2% 2%;
+
+  }
+  img {
+    cursor: pointer;
+    display: flex;
+    flex: auto; 
+    margin: 0 0 0 0;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: black 5px 5px 20px;
+  }
+
+  figcaption {
+    color: beige;
+    display: block;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: xx-large;
+    text-shadow: black 5px 5px 20px;
+  }
+
+  input {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 50px;
+    font-family: Calibri, 'Trebuchet MS', sans-serif, sans-serif;
+    font-size: large;
+    outline: 1px solid darkslategray; 
+  }
+
+  a {
+    text-decoration-line: none;
+  }

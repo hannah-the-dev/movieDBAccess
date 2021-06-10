@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Card</title>
+  <link rel="stylesheet" href="movie_card.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+
+<body>
+
+  <div class="page">
+    <input type="text" v-model="search" placeholder="Search by title">
+    <div class="film">
+      <figure v-for="item in items">
+        <a :href="'https://www.themoviedb.org/movie/' + item.id">
+          <img class="poster"
+            :src="'https://image.tmdb.org/t/p/w500' + item.poster_path">
+          <figcaption> {{ item.original_title }} </figcaption>
+        </a>
+      </figure>
+    </div>
+  </div>
+
+  <script>
+    var movieView = new Vue({
+      el: '.page',
+      data: {
+        search: '',
+        items: [],
+        all: []
+      },
+      watch: {
+        search: function (val) {
+          if (val == '') {
+            this.items = this.all;
+          } else {
+            let title = val.trim().toLowerCase();
+            this.getSearched(title);
+          }
+          // this.debouncedGetSearched(val);
+        }
+      },
+      created() {
+        this.getPoster()
+
+      },
+      methods: {
+        getPoster: function () {
+          axios.get('http://api.themoviedb.org/3/movie/upcoming?api_key=bb78e4cf3442e302d928f2c5edcdbee1')
+            .then((response) => {
+              this.all = response.data.results;
+              this.items = this.all;
+            })
+        },
+        getSearched: function (title) {
+          this.items = this.all
+            .filter(item =>
+              item.original_title.toLowerCase().includes(title)
+            )
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>
